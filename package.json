@@ -1,0 +1,18 @@
+{
+  "name": "habit-tracker",
+  "version": "1.0.0",
+  "description": "This app helps to track daily habits",
+  "scripts": {},
+  "author": "Deepak Jain",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.1",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.8.0",
+    "react-dom": "^18.2.0"
+  }
+}
