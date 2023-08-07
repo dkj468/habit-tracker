@@ -1,0 +1,23 @@
+.habits-header {
+  display: flex;
+  height: 2.7rem;
+  border-bottom: 1px solid gray;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.habit-option {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-add-habit {
+  background-color: #3662cc;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  border-color: white;
+}

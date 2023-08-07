@@ -1,24 +1,61 @@
 .side-nav {
-  width: 150px;
-  color: wheat;
+  flex: 0 0 250px;
   border-right: 1px solid gray;
   margin-top: 0;
-  height: 100%;
-  position: absolute;
+  height: 100vh;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   align-content: center;
-  align-items: center;
   gap: 1rem;
 }
 
 .navItem {
   margin-top: 0.5rem;
-  color: wheat;
-  border-color: rgba(255, 255, 255, 0.16);
+  margin-left: 1.2rem;
+  display: flex;
+}
+
+.profile {
+  padding: 0.5rem;
+  background-color: #323232;
+  height: 2rem;
+  width: 80%;
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  margin-left: 0.7rem;
+}
+
+.profile > img {
+  width: 40px;
+  height: 40px;
+}
+
+.profile > p {
+  margin-left: 10px;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15.6px;
+  /* color: rgba(255, 255, 255, 0.95); */
 }
 
 .navItem a {
   text-decoration: none;
-  color: wheat;
+}
+
+.allHabits > img {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+}
+
+.allHabits > p {
+  margin-left: 10px;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15.6px;
+  /* color: rgba(255, 255, 255, 0.95); */
 }

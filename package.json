@@ -2,7 +2,9 @@
   "name": "habit-tracker",
   "version": "1.0.0",
   "description": "This app helps to track daily habits",
-  "scripts": {},
+  "scripts": {
+    "start": "npx parcel index.html"
+  },
   "author": "Deepak Jain",
   "license": "ISC",
   "devDependencies": {

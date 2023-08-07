@@ -1,0 +1,8 @@
+.habits-container {
+  display: flex;
+  flex: 0 0 800px;
+  flex-direction: column;
+  border-right: 1px solid gray;
+  margin-top: 0;
+  height: 100vh;
+}
