@@ -1,0 +1,12 @@
+
+
+.habit {
+    width: 90%;
+    height: 1.5rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+
+}
