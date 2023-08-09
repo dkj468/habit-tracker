@@ -1,6 +1,6 @@
 .habits-container {
   display: flex;
-  flex: 0 0 800px;
+  flex: 0 0 100vh;
   flex-direction: column;
   border-right: 1px solid gray;
   margin-top: 0;

@@ -5,8 +5,9 @@ import { useHabitsContext } from '../../store/HabitsContext';
 
 
 const HabitsList = () => {
-  const {habitsList} = useHabitsContext();
-  console.log(habitsList);
+  const ctx = useHabitsContext();
+  console.log(ctx);
+  const habitsList = ctx.habitsList;
   return (
     <div className={classes['habit-list']}>
       {

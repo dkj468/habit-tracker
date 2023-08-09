@@ -1,10 +1,16 @@
+import { useHabitsContext } from '../../store/HabitsContext';
 import classes from './Habit.module.css';
 
 const Habit = (props) => {
-    const {id, name} = {...props.habit}
+    const habit = props.habit
+     const {setSelectedHabit} = useHabitsContext();
+    const handleHabitSelect = (e) =>{
+        console.log(habit);
+        setSelectedHabit(habit);
+    }
     return (
-        <div className={classes.habit} id={id}>
-            <p>{name}</p>
+        <div className={classes.habit} id={habit.id} onClick={e => handleHabitSelect(e)}>
+            <p>{habit.name}</p>
             <div>
                 <span>This is habit action</span>
             </div>

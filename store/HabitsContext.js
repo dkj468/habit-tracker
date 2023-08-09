@@ -25,6 +25,7 @@ const HABITS = [
 
 export default HabitsContextProvider = (props) => {
     const [habitsList, updateHabitsList] = useState([]);
+    const [selectedHabit, setSelectedHabit] = useState(undefined);
 
     useEffect(() => {
         updateHabitsList(HABITS)
@@ -32,7 +33,9 @@ export default HabitsContextProvider = (props) => {
 
     return (
         <HabitsContext.Provider value={{
-            habitsList
+            habitsList,
+            selectedHabit,
+            setSelectedHabit
         }}>
             {props.children}
         </HabitsContext.Provider>
