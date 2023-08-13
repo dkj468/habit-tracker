@@ -1,6 +1,6 @@
 import classes from "./SideNav.module.css";
-import profile from "../../asset/img/profile.png";
-import allHabits from "../../asset/img/all-habits.png";
+import profile from "../../../asset/img/profile.png";
+import allHabits from "../../../asset/img/all-habits.png";
 const SideNav = () => {
   return (
     <div className={classes["side-nav"]}>

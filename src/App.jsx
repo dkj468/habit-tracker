@@ -9,9 +9,9 @@ const App = () => {
   return (
     <HabitsContextProvider>
       <div className={classes.container}>
-          <SideNav />
-          <HabitsContainer />
-          <HabitDetail />
+        <SideNav />
+        <HabitsContainer />
+        <HabitDetail />
       </div>
     </HabitsContextProvider>
   );
