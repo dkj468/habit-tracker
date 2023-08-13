@@ -1,12 +1,44 @@
-
-
 .habit {
-    width: 90%;
-    height: 1.5rem;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid gray;
+  width: 90%;
+  height: 1.5rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
 
+.habit-detail {
+  width: 85%;
+  cursor: pointer;
+}
+
+.habit-action {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.habit-action-done {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #323232;
+  height: 25px;
+  width: 65px;
+  margin: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.habit-action-done > svg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.habit-action-more {
+  cursor: pointer;
 }

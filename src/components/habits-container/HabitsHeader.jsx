@@ -1,15 +1,28 @@
+import { BsPlus } from "react-icons/bs";
+
 import classes from "./HabitsHeader.module.css";
-import { getCurrentTimeDescription } from "../../Utils/Utils";
+import { getCurrentTimeDescription, getFormattedDate } from "../../Utils/Utils";
+import { useState } from "react";
+
+const currentDate = getFormattedDate(new Date());
 const HabitsHeader = () => {
+  const [selectedDate, setSelectedDate] = useState(currentDate);
   return (
     <div className={classes["habits-header"]}>
       <span>{getCurrentTimeDescription()}</span>
       <div className={classes["habit-option"]}>
         {/* <input type="text" placeholder="search" /> */}
-        <input type="date" placeholder="search" />
-        <button type="button" className={classes["btn-add-habit"]}>
-          + Add Habits
-        </button>
+        <input
+          type="date"
+          value={selectedDate}
+          onChange={(e) =>
+            setSelectedDate(getFormattedDate(e.target.valueAsDate))
+          }
+        />
+        <div className={classes["habit-add"]}>
+          <BsPlus className={classes["habit-add-icon"]} />
+          <p className={classes["txt-add-habit"]}>Add Habits</p>
+        </div>
       </div>
     </div>
   );

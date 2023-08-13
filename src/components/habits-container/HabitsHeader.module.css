@@ -12,12 +12,24 @@
   gap: 0.5rem;
 }
 
-.btn-add-habit {
-  background-color: #3662cc;
-  color: white;
-  font-size: 13px;
+.habit-add {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  background-color: #323232;
+  height: 25px;
+  padding: 0.2rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.habit-add > svg {
+  width: 2em;
+  height: 2em;
+}
+
+.habit-add > p {
   font-weight: 500;
-  padding: 0.5rem;
-  border-radius: 0.4rem;
-  border-color: white;
+  margin-right: 1rem;
 }

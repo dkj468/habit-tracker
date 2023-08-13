@@ -12,3 +12,11 @@ export const getCurrentTimeDescription = () => {
     return "None";
   }
 };
+
+export const getFormattedDate = (thisDate) => {
+  const thisYear = thisDate.toLocaleString("default", { year: "numeric" });
+  const thisMonth = thisDate.toLocaleString("default", { month: "2-digit" });
+  const thisDay = thisDate.toLocaleString("default", { day: "2-digit" });
+
+  return `${thisYear}-${thisMonth}-${thisDay}`;
+};
