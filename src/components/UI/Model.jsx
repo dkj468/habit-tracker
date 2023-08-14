@@ -14,7 +14,7 @@ const Modal = (props) => {
   const placeHolder = document.getElementById("portal-root");
   return (
     <>
-      {ReactDOM.createPortal(<Backdrop onClick={props.onClick} />, placeHolder)}
+      {ReactDOM.createPortal(<Backdrop onClick={props.onClose} />, placeHolder)}
       {ReactDOM.createPortal(
         <Overlay> {props.children} </Overlay>,
         placeHolder
