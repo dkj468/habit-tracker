@@ -1,7 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./src/App";
+import HabitsContextProvider from "./src/store/HabitsContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<App />);
+root.render(
+  <HabitsContextProvider>
+    <App />
+  </HabitsContextProvider>
+);
