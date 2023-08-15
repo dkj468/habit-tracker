@@ -1,0 +1,39 @@
+.empty-list-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.habit-img {
+  margin: auto;
+}
+.habit-img > img {
+  height: 300px;
+  width: 300px;
+}
+
+.empty-list-quote {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.empty-list-quote > span {
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: rgb(123, 124, 124);
+  white-space: break-spaces;
+  width: 400px;
+}
+
+.empty-list-quote > h4 {
+  margin: auto;
+  text-transform: capitalize;
+}
+
+.add-habit-btn {
+  margin: auto;
+}
