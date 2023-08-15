@@ -3,24 +3,7 @@ import { useState } from "react";
 
 export const HabitsContext = React.createContext();
 
-const HABITS = [
-  {
-    id: 1,
-    name: "Meditate",
-  },
-  {
-    id: 2,
-    name: "Running",
-  },
-  {
-    id: 3,
-    name: "Book Reading",
-  },
-  {
-    id: 4,
-    name: "React learning",
-  },
-];
+const HABITS = [];
 
 export default HabitsContextProvider = (props) => {
   const [habitsList, updateHabitsList] = useState([]);
@@ -31,6 +14,23 @@ export default HabitsContextProvider = (props) => {
     updateHabitsList(HABITS);
   }, []);
 
+  const getNewId = () => {
+    if (habitsList.length === 0) return 1;
+    return Math.max(...habitsList.map((x) => x.id)) + 1;
+  };
+  const addNewHabit = (habit) => {
+    const id = getNewId();
+    const thisNewHabit = {
+      id,
+      isDeleted: false,
+      isarchived: false,
+      ...habit,
+    };
+    const tempHabits = [...habitsList];
+    tempHabits.push(thisNewHabit);
+    updateHabitsList(tempHabits);
+  };
+
   return (
     <HabitsContext.Provider
       value={{
@@ -39,6 +39,7 @@ export default HabitsContextProvider = (props) => {
         IsAddHabit,
         setSelectedHabit,
         SetIsAddHabit,
+        addNewHabit,
       }}
     >
       {props.children}

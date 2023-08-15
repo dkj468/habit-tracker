@@ -5,12 +5,12 @@ import { FaEllipsisH } from "react-icons/fa";
 import { BiCheck } from "react-icons/bi";
 
 const Habit = (props) => {
-  const habit = props.habit;
+  const { habitName, id } = props.habit;
   const { setSelectedHabit } = useHabitsContext();
 
   const handleHabitSelect = (e) => {
-    console.log(habit);
-    setSelectedHabit(habit);
+    console.log(props.habit);
+    setSelectedHabit(props.habit);
   };
 
   const handleActionClick = (e) => {
@@ -18,12 +18,12 @@ const Habit = (props) => {
     e.preventDefault();
   };
   return (
-    <div className={classes.habit} id={habit.id}>
+    <div className={classes.habit} id={id}>
       <div
         className={classes["habit-detail"]}
         onClick={(e) => handleHabitSelect(e)}
       >
-        <p>{habit.name}</p>
+        <p>{habitName}</p>
       </div>
       <div className={classes["habit-action"]}>
         <div className={classes["habit-action-done"]}>
@@ -33,7 +33,7 @@ const Habit = (props) => {
 
         <FaEllipsisH
           className={classes["habit-action-more"]}
-          id={habit.id}
+          id={id}
           onClick={(e) => handleActionClick(e)}
         />
       </div>

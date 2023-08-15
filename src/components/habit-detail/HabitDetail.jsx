@@ -23,7 +23,7 @@ const HabitDetail = () => {
 
   return (
     <div className={classes["habit-detail-container"]}>
-      <p>{selectedHabit.name}</p>
+      <p>{selectedHabit.habitName}</p>
     </div>
   );
 };

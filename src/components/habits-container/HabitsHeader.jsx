@@ -9,6 +9,7 @@ const currentDate = getFormattedDate(new Date());
 const HabitsHeader = () => {
   const [selectedDate, setSelectedDate] = useState(currentDate);
   const { SetIsAddHabit } = useHabitsContext();
+
   const addHabitHandler = () => {
     SetIsAddHabit(true);
   };
@@ -27,7 +28,7 @@ const HabitsHeader = () => {
         />
         <div className={classes["habit-add"]} onClick={addHabitHandler}>
           <BsPlus className={classes["habit-add-icon"]} />
-          <p className={classes["txt-add-habit"]}>Add Habits</p>
+          <p className={classes["txt-add-habit"]}>Add Habit</p>
         </div>
       </div>
     </div>

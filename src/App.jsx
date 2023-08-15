@@ -10,7 +10,7 @@ const App = () => {
   const { IsAddHabit } = useHabitsContext();
   return (
     <div className={classes.container}>
-      {<NewHabit />}
+      {IsAddHabit && <NewHabit />}
       <SideNav />
       <HabitsContainer />
       <HabitDetail />
