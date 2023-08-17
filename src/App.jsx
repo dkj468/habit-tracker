@@ -1,4 +1,5 @@
 import classes from "./App.module.css";
+import Home from "./components/Home";
 
 import HabitDetail from "./components/habit-detail/HabitDetail";
 import NewHabit from "./components/habit/NewHabit";
@@ -8,6 +9,10 @@ import { useHabitsContext } from "./store/HabitsContext";
 
 const App = () => {
   const { IsAddHabit } = useHabitsContext();
+  
+  return (
+    <Home />
+  )
   return (
     <div className={classes.container}>
       {IsAddHabit && <NewHabit />}
