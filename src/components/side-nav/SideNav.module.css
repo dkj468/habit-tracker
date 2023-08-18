@@ -8,6 +8,7 @@
   flex-direction: column;
   align-content: center;
   gap: 1rem;
+  cursor: pointer;
 }
 
 .navItem {
@@ -30,6 +31,7 @@
 .profile > img {
   width: 40px;
   height: 40px;
+  border-radius: 50%;
 }
 
 .profile > p {
@@ -39,6 +41,10 @@
   font-weight: 500;
   line-height: 15.6px;
   /* color: rgba(255, 255, 255, 0.95); */
+}
+
+.profile-action {
+  z-index: 1;
 }
 
 .navItem a {
