@@ -9,11 +9,16 @@ import SideNav from "./components/side-nav/SideNav";
 import { useHabitsContext } from "./store/HabitsContext";
 import HomePage from "./pages/HomePage";
 import AppPage from "./pages/AppPage";
+import SignupPage from "./pages/SignupPage";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
+  },
+  {
+    path: "/signup",
+    element: <SignupPage />,
   },
   {
     path: "/journel",

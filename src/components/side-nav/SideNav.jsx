@@ -8,7 +8,7 @@ const SideNav = () => {
   return (
     <div className={classes["side-nav"]}>
       <div className={`${classes.navItem} ${classes.profile}`}>
-        <img src={user?.photoURL} />
+        <img src={user?.photoURL ? user?.photoURL : profile} />
         <p>{user?.displayName}</p>
       </div>
 
