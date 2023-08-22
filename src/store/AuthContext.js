@@ -2,8 +2,10 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 import { GoogleProider, auth } from "../firebase-config/config";
 import { setuid } from "process";
@@ -15,7 +17,7 @@ const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user && user.emailVerified) {
+      if (user) {
         console.log(user);
         setUser(user);
       } else {
@@ -41,6 +43,14 @@ const AuthContextProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  const userVerificationEmail = (user) => {
+    return sendEmailVerification(user);
+  };
+
+  const logout = () => {
+    return signOut(auth);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -48,6 +58,8 @@ const AuthContextProvider = ({ children }) => {
         signInWithGoogle,
         signInWithUserEmailAndPassword,
         createUser,
+        userVerificationEmail,
+        logout,
       }}
     >
       {children}

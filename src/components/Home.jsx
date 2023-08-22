@@ -1,7 +1,6 @@
 import classes from "./Home.module.css";
 import google from "../../asset/img/google-xsm.png";
 
-
 import { auth, GoogleProider } from "../firebase-config/config";
 import { Navigate, useNavigate } from "react-router";
 import { useAuthContext } from "../store/AuthContext";
@@ -10,21 +9,19 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const formDefaultValues = {
-    userName: "",
-    password: ""
-  }
+  userName: "",
+  password: "",
+};
 
 const Home = () => {
-  const [error, setError] = useState(undefined);  
-  const {value,
-    formErrors,
-    IsFormValid,
-    onChangeHandler,
-    onBlurHandler} = useInput(formDefaultValues);
+  const [error, setError] = useState(undefined);
+  const { value, formErrors, IsFormValid, onChangeHandler, onBlurHandler } =
+    useInput(formDefaultValues);
 
-  const { user, signInWithGoogle, signInWithUserEmailAndPassword } = useAuthContext();
+  const { user, signInWithGoogle, signInWithUserEmailAndPassword } =
+    useAuthContext();
 
-  if (user) {
+  if (user && user.emailVerified) {
     return <Navigate to="/journel" />;
   }
   const navigate = useNavigate();
@@ -44,24 +41,32 @@ const Home = () => {
     // console.log(value);
 
     try {
-      const user = await signInWithUserEmailAndPassword(value['userName'], value['password']);
+      const user = await signInWithUserEmailAndPassword(
+        value["userName"],
+        value["password"]
+      );
       console.log(user);
       navigate("/journel");
-    } catch(err) {
-        console.error(err.message);
-        setError(err.message);
+    } catch (err) {
+      console.error(err.message);
+      setError(err.message);
     }
-  }
+  };
 
   return (
     <>
       <div className={classes["home-page-container"]}>
         <h1 className={classes["welcome-txt"]}>Welcome to habit tracker</h1>
         <div className={classes["login-frm-container"]}>
-            {error && <div className={classes["form-control-grp"]}>
+          {error && (
+            <div className={classes["form-control-grp"]}>
               <span className={classes.error}>{error}</span>
-            </div>}   
-          <form className={classes["form-container"]} onSubmit={e => loginHandler(e)}>
+            </div>
+          )}
+          <form
+            className={classes["form-container"]}
+            onSubmit={(e) => loginHandler(e)}
+          >
             <div className={classes["form-control-grp"]}>
               <label htmlFor="txt-user">Username</label>
               <input
@@ -69,7 +74,7 @@ const Home = () => {
                 placeholder="Username"
                 id="txt-user"
                 name="userName"
-                value={value['userName']}
+                value={value["userName"]}
                 onChange={onChangeHandler}
               />
             </div>
@@ -81,7 +86,7 @@ const Home = () => {
                 id="password"
                 name="password"
                 placeholder="Password"
-                value={value['password']}
+                value={value["password"]}
                 onChange={onChangeHandler}
               />
             </div>
@@ -90,7 +95,6 @@ const Home = () => {
                 Login
               </button>
             </div>
-                     
           </form>
           <div
             className={classes["sign-up-action"]}
@@ -100,7 +104,9 @@ const Home = () => {
             <span>Continue with Google</span>
           </div>
           <div className={classes["signup-txt"]}>
-            <p>Don't have an account yet ? <NavLink to="/signup">Signup</NavLink></p>
+            <p>
+              Don't have an account yet ? <NavLink to="/signup">Signup</NavLink>
+            </p>
           </div>
         </div>
       </div>

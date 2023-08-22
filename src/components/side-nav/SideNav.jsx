@@ -1,36 +1,25 @@
 import React from "react";
+import { FiLogOut } from "react-icons/fi";
 import classes from "./SideNav.module.css";
 import profile from "../../../asset/img/profile.png";
 import allHabits from "../../../asset/img/all-habits.png";
 import { useAuthContext } from "../../store/AuthContext";
 import { useState } from "react";
-import Popup from "reactjs-popup";
+import { useNavigate } from "react-router-dom";
 const SideNav = () => {
-  const [showActions, setShowActions] = useState(false);
-  const { user } = useAuthContext();
+  const { user, logout } = useAuthContext();
   // console.log(user);
 
-  const handleProfileClick = (e) => {
-    e.stopPropagation();
-    setShowActions((prev) => {
-      return !prev;
-    });
-  };
+  const navigate = useNavigate();
 
-  const CustomButton = React.forwardRef(({ open, ...props }, ref) => (
-    // <button className="button" ref={ref} {...props}>
-    //   Trigger - {props.open ? "Opened" : "Closed"}
-    // </button>
-    <div
-      className={`${classes.navItem} ${classes.profile}`}
-      // onClick={(e) => handleProfileClick(e)}
-      ref={ref}
-      {...props}
-    >
-      <img src={user?.photoURL} />
-      <p>{user?.displayName}</p>
-    </div>
-  ));
+  const logoutHandler = async () => {
+    try {
+      await logout();
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className={classes["side-nav"]}>
@@ -42,6 +31,10 @@ const SideNav = () => {
       <div className={`${classes.navItem} ${classes.allHabits}`}>
         <img src={allHabits} />
         <p>All Habits</p>
+      </div>
+      <div className={classes.navItem} onClick={logoutHandler}>
+        <FiLogOut />
+        <p>Logout</p>
       </div>
     </div>
   );
