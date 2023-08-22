@@ -7,7 +7,7 @@
   border-radius: 14px;
   background-color: #323232;
   width: 600px;
-  height: 400px;
+  /* height: 400px; */
   margin-top: 150px;
   color: white;
   padding: 1.5rem;
@@ -145,4 +145,10 @@ select {
 .signup-txt {
   padding-left: 1rem;
   font-weight: 300;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  font-weight: 400;
 }

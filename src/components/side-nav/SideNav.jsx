@@ -34,35 +34,11 @@ const SideNav = () => {
 
   return (
     <div className={classes["side-nav"]}>
-      {/* <Popup
-        trigger={(open) => {
-          <div
-            className={`${classes.navItem} ${classes.profile}`}
-            onClick={(e) => handleProfileClick(e)}
-          >
-            <img src={user?.photoURL} />
-            <p>{user?.displayName}</p>
-          </div>;
-        }}
-        position="right center"
-        closeOnDocumentClick
-      >
-        <span> Popup content </span>
-      </Popup> */}
-      <Popup
-        trigger={(showActions) => <CustomButton open={showActions} />}
-        position="bottom right"
-        closeOnDocumentClick
-      >
-        <div className={classes["profile-actions"]}>
-          <div className={classes["profile-action"]}>
-            <p>Profile</p>
-          </div>
-          <div className={classes["profile-action"]}>
-            <p>Logout</p>
-          </div>
-        </div>
-      </Popup>
+      <div className={`${classes.navItem} ${classes.profile}`}>
+        <img src={user?.photoURL ? user?.photoURL : profile} />
+        <p>{user?.displayName}</p>
+      </div>
+
       <div className={`${classes.navItem} ${classes.allHabits}`}>
         <img src={allHabits} />
         <p>All Habits</p>
