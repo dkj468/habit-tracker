@@ -26,6 +26,7 @@
   display: flex;
   align-items: center;
   margin-left: 0.7rem;
+  position: relative;
 }
 
 .profile > img {
@@ -36,16 +37,30 @@
 
 .profile > p {
   margin-left: 10px;
-  font-family: Inter;
-  font-size: 13px;
+  /* font-family: Inter; */
+  font-size: 0.8rem;
   font-weight: 500;
   line-height: 15.6px;
+  text-transform: capitalize;
   /* color: rgba(255, 255, 255, 0.95); */
 }
 
-.profile-action {
-  z-index: 1;
-}
+/* .profile-actions {
+  position: absolute;
+  top: 2.7rem;
+  left: 130px;
+  display: flex;
+  flex-direction: column;
+  /* gap: 0.5rem; */
+/* z-index: 1000; */
+/* } * */
+
+/* .profile-action {
+  background-color: #323232;
+  padding: 0.5rem;
+  color: white;
+  border: 1px solid white;
+} */
 
 .navItem a {
   text-decoration: none;
@@ -59,8 +74,8 @@
 
 .allHabits > p {
   margin-left: 10px;
-  font-family: Inter;
-  font-size: 13px;
+  /* font-family: Inter; */
+  font-size: 0.8rem;
   font-weight: 500;
   line-height: 15.6px;
   /* color: rgba(255, 255, 255, 0.95); */
