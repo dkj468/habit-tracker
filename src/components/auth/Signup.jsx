@@ -1,5 +1,6 @@
 import classes from "./Signup.module.css";
 import google from "../../../asset/img//google-xsm.png";
+import goal from "../../../asset/img//Goal-1.png";
 
 // import { auth, GoogleProider } from "../firebase-config/config";
 import { useNavigate } from "react-router";
@@ -34,12 +35,15 @@ const Signup = () => {
   };
 
   const signUpHandler = async (e) => {
+    setIsEmailSend(false);
+    setError('');
     e.preventDefault();
     try {
-      const user = await createUser(value["userName"], value["password"]);
-      console.log(user);
-      await userVerificationEmail(user);
-      navigate("/");
+      const userCredentials = await createUser(value["userName"], value["password"]);
+      console.log(userCredentials);
+      await userVerificationEmail(userCredentials.user);
+      setIsEmailSend(true);
+      //navigate("/");
     } catch (err) {
       console.error(err.message);
       setError(err.message);
@@ -47,7 +51,12 @@ const Signup = () => {
   };
   return (
     <div className={classes["home-page-container"]}>
-      <h1 className={classes["welcome-txt"]}>Welcome to habit tracker</h1>
+      <div className={classes["welcome-txt"]}>
+        <div className={classes['img-container']}>
+        <img className={classes['img-tracker']} src={goal} />
+        </div>
+        <h1>Welcome to habit tracker</h1>
+      </div>
       <div className={classes["login-frm-container"]}>
         {error && (
           <div className={classes["form-control-grp"]}>
@@ -56,7 +65,7 @@ const Signup = () => {
         )}
         {IsEmailSend && (
           <div className={classes["form-control-grp"]}>
-            <span className={classes.error}>
+            <span className={classes.info}>
               An email has been sent to your email id. Please click on the link
               provided and verify your email address.
             </span>

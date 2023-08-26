@@ -1,5 +1,6 @@
 import classes from "./Home.module.css";
 import google from "../../asset/img/google-xsm.png";
+import goal from "../../asset/img/Goal-1.png";
 
 import { auth, GoogleProider } from "../firebase-config/config";
 import { Navigate, useNavigate } from "react-router";
@@ -45,7 +46,7 @@ const Home = () => {
         value["userName"],
         value["password"]
       );
-      console.log(user);
+      // console.log(user);
       navigate("/journel");
     } catch (err) {
       console.error(err.message);
@@ -56,7 +57,12 @@ const Home = () => {
   return (
     <>
       <div className={classes["home-page-container"]}>
-        <h1 className={classes["welcome-txt"]}>Welcome to habit tracker</h1>
+      <div className={classes["welcome-txt"]}>
+        <div className={classes['img-container']}>
+        <img className={classes['img-tracker']} src={goal} />
+        </div>
+        <h1>Welcome to habit tracker</h1>
+      </div>
         <div className={classes["login-frm-container"]}>
           {error && (
             <div className={classes["form-control-grp"]}>

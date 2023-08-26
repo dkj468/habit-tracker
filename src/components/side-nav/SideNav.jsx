@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const SideNav = () => {
   const { user, logout } = useAuthContext();
-  // console.log(user);
+  console.log(user);
 
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const SideNav = () => {
     <div className={classes["side-nav"]}>
       <div className={`${classes.navItem} ${classes.profile}`}>
         <img src={user?.photoURL ? user?.photoURL : profile} />
-        <p>{user?.displayName}</p>
+        <p>{user?.displayName ? user?.displayName : user.email.substring(0,10)}</p>
       </div>
 
       <div className={`${classes.navItem} ${classes.allHabits}`}>
