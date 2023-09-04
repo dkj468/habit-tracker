@@ -22,10 +22,12 @@ const Home = () => {
   const { user, signInWithGoogle, signInWithUserEmailAndPassword } =
     useAuthContext();
 
-  if (user && user.emailVerified) {
-    return <Navigate to="/journel" />;
-  }
   const navigate = useNavigate();
+  
+
+  if (user && user.emailVerified) {
+    return navigate("/journel");
+  }
 
   const signInWithGoogleHandler = async () => {
     try {
