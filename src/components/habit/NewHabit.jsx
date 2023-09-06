@@ -1,9 +1,11 @@
-import { useState } from "react";
+import {db} from "../../firebase-config/config";
 import { getFormattedDate } from "../../Utils/Utils";
 import useInput from "../../hooks/useInput";
 import { useHabitsContext } from "../../store/HabitsContext";
 import Modal from "../UI/Model";
 import classes from "./NewHabit.module.css";
+import { Timestamp, addDoc, collection } from "firebase/firestore";
+import { useAuthContext } from "../../store/AuthContext";
 
 const formDefaultValues = {
   habitName: "",
@@ -12,6 +14,8 @@ const formDefaultValues = {
 };
 
 const NewHabit = () => {
+  const {user} = useAuthContext();
+  console.log(user);
   const { SetIsAddHabit, addNewHabit } = useHabitsContext();
   const { value, formErrors, IsFormValid, onChangeHandler, onBlurHandler } =
     useInput(formDefaultValues);
@@ -22,8 +26,15 @@ const NewHabit = () => {
     });
   };
 
-  const saveHabitHandler = (e) => {
+  const saveHabitHandler = async (e) => {
     e.preventDefault();
+    const newHabit = {
+      ...value,
+      userId:user.uid,
+      createdAt: Timestamp.fromDate(new Date())
+    }
+    const docRef = await addDoc(collection(db, "habits"), newHabit);
+    console.log("Document written with ID: ", docRef.id);
     addNewHabit(value);
     SetIsAddHabit((prevVal) => {
       return !prevVal;

@@ -8,7 +8,6 @@ import {
   signOut,
 } from "firebase/auth";
 import { GoogleProider, auth } from "../firebase-config/config";
-import { setuid } from "process";
 
 const AuthContext = createContext();
 
@@ -18,7 +17,7 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
+        // console.log(user);
         setUser(user);
       } else {
         setUser(null);
@@ -26,10 +25,8 @@ const AuthContextProvider = ({ children }) => {
       }
     });
 
-    // return () => {
-    //   unsubscribe();
-    // };
-  }, []);
+    return unsubscribe;
+  }, [user]);
 
   const signInWithGoogle = () => {
     return signInWithPopup(auth, GoogleProider);

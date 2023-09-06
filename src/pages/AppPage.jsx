@@ -9,7 +9,7 @@ import NewHabit from "../components/habit/NewHabit";
 import { useNavigate } from "react-router-dom";
 
 const AppPage = () => {
-  const { user, logout } = useAuthContext();
+  const { user } = useAuthContext();
   //console.log(user);
   const navigate = useNavigate();
   if(!user) {
