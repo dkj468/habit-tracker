@@ -1,5 +1,5 @@
 .side-nav {
-  flex: 0 0 250px;
+  width: 18%;
   border-right: 1px solid gray;
   margin-top: 0;
   height: 100vh;

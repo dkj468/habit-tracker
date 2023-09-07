@@ -1,0 +1,9 @@
+
+
+.statistics-card {
+    width: 45%;
+    border: 0.5px solid gray;
+    height: 75px;
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+}

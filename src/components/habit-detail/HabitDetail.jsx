@@ -2,6 +2,9 @@ import classes from "./HabitDetail.module.css";
 
 import { useHabitsContext } from "../../store/HabitsContext";
 import HabitQuote from "./HabitQuote";
+import HabitDetailHeader from "./HabitDetailHeader";
+import HabitStreak from "./HabitStreak";
+import HabitstatisticsCardsContainer from "./HabitstatisticsCardsContainer";
 
 const HabitDetail = () => {
   const { selectedHabit } = useHabitsContext();
@@ -23,7 +26,9 @@ const HabitDetail = () => {
 
   return (
     <div className={classes["habit-detail-container"]}>
-      <p>{selectedHabit.habitName}</p>
+      <HabitDetailHeader />
+      <HabitStreak />
+      <HabitstatisticsCardsContainer />
     </div>
   );
 };

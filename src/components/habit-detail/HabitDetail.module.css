@@ -1,9 +1,10 @@
 .habit-detail-container {
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
-  align-items: center;
-  justify-content: center;
+  width: 40%;
+  /* flex: 1 1 auto; */
+  /* align-items: center; */
+  /* justify-content: center; */
 }
 
 .no-habit-container {
