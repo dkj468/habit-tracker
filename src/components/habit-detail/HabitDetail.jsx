@@ -26,8 +26,8 @@ const HabitDetail = () => {
 
   return (
     <div className={classes["habit-detail-container"]}>
-      <HabitDetailHeader />
-      <HabitStreak />
+      <HabitDetailHeader selectedHabit= {selectedHabit}/>
+      <HabitStreak selectedHabit = {selectedHabit}/>
       <HabitstatisticsCardsContainer />
     </div>
   );

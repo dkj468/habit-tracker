@@ -1,9 +1,8 @@
-import { useHabitsContext } from "../../store/HabitsContext";
 import classes from "./HabitDetailHeader.module.css";
 
 
-const HabitDetailHeader = () => {
-    const { selectedHabit } = useHabitsContext();
+const HabitDetailHeader = (props) => {
+    const  selectedHabit = props.selectedHabit;
     return (
         <div className={classes['header-container']}>
             <p>{selectedHabit.habitName}</p>
@@ -14,7 +13,7 @@ const HabitDetailHeader = () => {
                         
                 </span>
                 <span>September 2023</span>                
-                <span class="chakra-button__icon css-1hzyiq5"><svg width="16" height="16" viewBox="0 0 32 32" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M6 11L16.5 21L27 11H6Z"></path></svg></span>
+                <span><svg width="16" height="16" viewBox="0 0 32 32" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M6 11L16.5 21L27 11H6Z"></path></svg></span>
             </div>
         </div>
     )
