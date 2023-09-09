@@ -16,7 +16,7 @@ import {
 
 const Habit = (props) => {
   const { habitName, id } = props.habit;
-  const { setSelectedHabit } = useHabitsContext();
+  const { setSelectedHabit, setIsHabitUpdated } = useHabitsContext();
 
   const handleHabitSelect = (e) => {
     console.log(props.habit);
@@ -31,6 +31,7 @@ const Habit = (props) => {
   const doneClickHandler = async (e) => {
     e.preventDefault();
     try {
+      setIsHabitUpdated(false);
       const thisHabitDoc = doc(db, "habits", props.habit.id);
       console.log(thisHabitDoc);
       const response = await updateDoc(thisHabitDoc, {
@@ -40,6 +41,7 @@ const Habit = (props) => {
         }),
       });
       console.log(response);
+      setIsHabitUpdated(true);
     } catch (err) {
       console.log(err);
     }
