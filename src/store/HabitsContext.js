@@ -11,6 +11,7 @@ export default HabitsContextProvider = (props) => {
   const [habitsList, updateHabitsList] = useState([]);
   const [selectedHabit, setSelectedHabit] = useState(undefined);
   const [IsAddHabit, SetIsAddHabit] = useState(false);
+  // const [IsHabitUpdated, setIsHabitUpdated] = useState(false)
 
   useEffect(() => {
     const fetchHabitsData = async () => {
@@ -51,6 +52,49 @@ export default HabitsContextProvider = (props) => {
     updateHabitsList(tempHabits);
   };
 
+  const calculateHabitsStreak = () => {
+    let streakData = selectedHabit.data;
+    streakData = streakData.map(data => {
+        return {
+            status: data.status,
+            startDate: new Date(data.startDate.seconds*1000)
+        }
+    });
+
+    streakData = streakData.sort((a,b) => b.startDate - a.startDate);
+    console.log("streakData = " + JSON.stringify(streakData) );
+    
+    const indexOfFail = streakData.findIndex(data => data.status === 'fail');
+    const indexOfSkip = streakData.findIndex(data => data.status === 'skip');
+
+    console.log("Fail Index : " + indexOfFail, "Skip Index : " + indexOfSkip);
+    let streakCount = 0;
+    let streakDate = undefined;
+    
+    if(indexOfFail == -1 && indexOfSkip == -1)  {
+        streakCount = streakData.length;
+        streakDate = streakData[streakData.length - 1].startDate;
+    } else if (indexOfFail == 0 || indexOfSkip == 0 ) {
+        streakCount = 0;
+        streakDate = new Date();
+    } else {
+        let indexOfLastSuccess = -1;
+        if(indexOfFail === indexOfSkip) {
+            indexOfLastSuccess = indexOfFail;
+        } else if(indexOfFail > indexOfSkip) {
+            indexOfLastSuccess = indexOfSkip;
+        } else {
+            indexOfLastSuccess = indexOfFail;
+        }
+        streakCount = indexOfLastSuccess;
+        streakDate = streakData[indexOfLastSuccess].startDate;
+    }
+
+    return {
+      streakCount, streakDate
+    }
+  }
+
   return (
     <HabitsContext.Provider
       value={{
@@ -60,6 +104,7 @@ export default HabitsContextProvider = (props) => {
         setSelectedHabit,
         SetIsAddHabit,
         addNewHabit,
+        calculateHabitsStreak
       }}
     >
       {props.children}

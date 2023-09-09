@@ -20,3 +20,12 @@ export const getFormattedDate = (thisDate) => {
 
   return `${thisYear}-${thisMonth}-${thisDay}`;
 };
+
+export const getMMMDDFormattedDate = (thisDate) => {
+
+  return thisDate.toLocaleString("default", {
+    month:"short",
+    year:"numeric",
+    day:"numeric"
+  })
+}

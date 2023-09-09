@@ -27,16 +27,29 @@
     text-transform: uppercase;
     margin-bottom: 6px;
     color: rgb(123, 124, 124);
-    font-family: Inter;
     font-size: 11px;
     font-weight: 600;
     line-height: 13.2px;
 }
 
 .txt-streak-count{
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 18px;
     font-weight: 600;
     line-height: 8px;
 }
 
+.streak-date{
+   margin-left: auto;
+   margin-right: 0.5rem;
+   background-color: #323232;
+   padding: 0.1rem;
+   border: 1px gray;
+   border-radius: 4px;
+   text-transform: uppercase;
+   color:rgb(123, 124, 124);
+   opacity: 1;
+   /* font-family: Inter; */
+   font-size: 11px;
+   font-weight: 600;
+}
