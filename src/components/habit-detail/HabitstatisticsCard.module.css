@@ -6,4 +6,20 @@
     height: 75px;
     padding: 0.3rem;
     border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap:0.7rem
+}
+
+.card-header {
+    color: #7b7c7c;
+    font-size: 13px;
+    text-transform: capitalize;
+    font-weight: 700;
+    align-items: center;
+}
+
+.txt-days{
+    font-weight: 600;
+    margin-left: 1rem;
 }
