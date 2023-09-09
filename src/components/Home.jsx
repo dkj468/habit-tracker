@@ -23,7 +23,6 @@ const Home = () => {
     useAuthContext();
 
   const navigate = useNavigate();
-  
 
   if (user && user.emailVerified) {
     return navigate("/journel");
@@ -59,12 +58,12 @@ const Home = () => {
   return (
     <>
       <div className={classes["home-page-container"]}>
-      <div className={classes["welcome-txt"]}>
-        <div className={classes['img-container']}>
-        <img className={classes['img-tracker']} src={goal} />
+        <div className={classes["welcome-txt"]}>
+          <div className={classes["img-container"]}>
+            <img className={classes["img-tracker"]} src={goal} />
+          </div>
+          <h1>Welcome to habit tracker</h1>
         </div>
-        <h1>Welcome to habit tracker</h1>
-      </div>
         <div className={classes["login-frm-container"]}>
           {error && (
             <div className={classes["form-control-grp"]}>

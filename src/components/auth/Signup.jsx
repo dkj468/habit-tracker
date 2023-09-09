@@ -36,10 +36,13 @@ const Signup = () => {
 
   const signUpHandler = async (e) => {
     setIsEmailSend(false);
-    setError('');
+    setError("");
     e.preventDefault();
     try {
-      const userCredentials = await createUser(value["userName"], value["password"]);
+      const userCredentials = await createUser(
+        value["userName"],
+        value["password"]
+      );
       console.log(userCredentials);
       await userVerificationEmail(userCredentials.user);
       setIsEmailSend(true);
@@ -52,8 +55,8 @@ const Signup = () => {
   return (
     <div className={classes["home-page-container"]}>
       <div className={classes["welcome-txt"]}>
-        <div className={classes['img-container']}>
-        <img className={classes['img-tracker']} src={goal} />
+        <div className={classes["img-container"]}>
+          <img className={classes["img-tracker"]} src={goal} />
         </div>
         <h1>Welcome to habit tracker</h1>
       </div>

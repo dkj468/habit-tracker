@@ -1,9 +1,5 @@
-
-
 const Card = () => {
-    return(
-        <div>This is Card component</div>
-    )
-}
+  return <div>This is Card component</div>;
+};
 
 export default Card;

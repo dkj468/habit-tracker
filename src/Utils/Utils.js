@@ -22,10 +22,9 @@ export const getFormattedDate = (thisDate) => {
 };
 
 export const getMMMDDFormattedDate = (thisDate) => {
-
   return thisDate.toLocaleString("default", {
-    month:"short",
-    year:"numeric",
-    day:"numeric"
-  })
-}
+    month: "short",
+    year: "numeric",
+    day: "numeric",
+  });
+};

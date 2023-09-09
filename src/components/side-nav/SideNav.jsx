@@ -25,7 +25,9 @@ const SideNav = () => {
     <div className={classes["side-nav"]}>
       <div className={`${classes.navItem} ${classes.profile}`}>
         <img src={user?.photoURL ? user?.photoURL : profile} />
-        <p>{user?.displayName ? user?.displayName : user?.email.substring(0,11)}</p>
+        <p>
+          {user?.displayName ? user?.displayName : user?.email.substring(0, 11)}
+        </p>
       </div>
 
       <div className={`${classes.navItem} ${classes.allHabits}`}>
