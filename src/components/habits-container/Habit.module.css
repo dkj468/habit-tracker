@@ -42,3 +42,9 @@
 .habit-action-more {
   cursor: pointer;
 }
+
+.habit-action-menu {
+  position: absolute;
+  top: 20%;
+  left: 52%;
+}

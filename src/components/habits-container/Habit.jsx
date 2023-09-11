@@ -13,6 +13,7 @@ import {
   getDoc,
   Timestamp,
 } from "firebase/firestore";
+import HabitActionList from "../UI/HabitActionList";
 
 const Habit = (props) => {
   const { habitName, id } = props.habit;
@@ -64,12 +65,17 @@ const Habit = (props) => {
           <BiCheck />
           <p>Done</p>
         </div>
-
         <FaEllipsisH
           className={classes["habit-action-more"]}
           id={id}
           onClick={(e) => handleActionClick(e)}
         />
+        <HabitActionList className={classes["habit-action-menu"]}>
+          <ul>
+            <li>Skip</li>
+            <li>Fail</li>
+          </ul>
+        </HabitActionList>
       </div>
     </div>
   );
