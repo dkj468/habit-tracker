@@ -14,12 +14,13 @@ Habits Tracker helps in managing, tracking your habits.
 - Properties
 - Hook (useState, useEffect)
 - React Portal (showing model dialog)
-- Context 
+- Context API
 - Routing
 - Form Handling
 - Authentication
 ### Building this application from scratch - not using npx create-react-app 🚀🚀🚀🚀
 
 ### Future roadmap
+- Use of redux instead of Context API
 - Integrate React frontend with .NET CORE API
 
