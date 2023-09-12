@@ -5,15 +5,17 @@ import { useHabitsContext } from "../../store/HabitsContext";
 
 const Habit = (props) => {
   const { habitName, id } = props.habit;
-  const { setSelectedHabit, setSelectedHabitId} = useHabitsContext();
+  const { selectedHabit, setSelectedHabitId} = useHabitsContext();
 
   const handleHabitSelect = (e) => {
     // console.log(props.habit);
     setSelectedHabitId(props.habit.id);    
   };
 
+  const cssClassName = selectedHabit && id === selectedHabit.id ? `${classes.habit} ${classes.selected}` : classes.habit;
+
   return (
-    <div className={classes.habit} id={id}>
+    <div className={cssClassName} id={id}>
       <div
         className={classes["habit-detail"]}
         onClick={(e) => handleHabitSelect(e)}

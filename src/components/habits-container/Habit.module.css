@@ -6,10 +6,14 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid gray;
+  margin-left: 1rem;
 }
 
+.selected {
+  box-shadow: 2px 2px 8px #888888;
+}
 .habit-detail {
-  width: 85%;
+  width: 75%;
   cursor: pointer;
 }
 
