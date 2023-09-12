@@ -31,7 +31,7 @@ const HabitstatisticsCard = (props) => {
     );
   } else if (cardType === "total") {
     cardHeader = <span className={classes["card-header"]}>Total</span>;
-    days = selectedHabit.data.length;
+    days = selectedHabit.data?.length;
   }
 
   return (

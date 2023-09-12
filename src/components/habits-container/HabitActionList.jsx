@@ -25,13 +25,14 @@ const HabitActionList = (props) => {
   // console.log(streakDataForToday);
 
   useEffect(() => {
-    const streakData = props.habit.data.map((data) => {
+    const streakData = props.habit.data?.map((data) => {
       return {
         status: data.status,
         startDate: new Date(data.startDate.seconds * 1000),
       };
     });
     const thisStreak = streakData?.find(el => getFormattedDate(el.startDate) === getFormattedDate(new Date()));
+    console.log(thisStreak);
     setHabitStreak(thisStreak);    
   }, [])
 
