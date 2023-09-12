@@ -18,11 +18,8 @@ import { getFormattedDate } from "../../Utils/Utils";
 
 const HabitActionList = (props) => {  
   const [IsShowActionList, setIsShowActionList] = useState(false);
-  const {setIsHabitUpdated, getHabitDataForDate } = useHabitsContext();
+  const {setIsHabitUpdated } = useHabitsContext();
   const [HabitStreak, setHabitStreak] = useState(undefined);
-
-  // const streakDataForToday = getHabitDataForDate(props.habit, new Date());
-  // console.log(streakDataForToday);
 
   useEffect(() => {
     const streakData = props.habit.data?.map((data) => {
@@ -34,7 +31,7 @@ const HabitActionList = (props) => {
     const thisStreak = streakData?.find(el => getFormattedDate(el.startDate) === getFormattedDate(new Date()));
     console.log(thisStreak);
     setHabitStreak(thisStreak);    
-  }, [])
+  }, []);
 
   const handleActionClick = (e) => {
     console.log(e.target);

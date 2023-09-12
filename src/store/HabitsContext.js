@@ -9,6 +9,7 @@ export const HabitsContext = React.createContext();
 export default HabitsContextProvider = (props) => {
   const [habitsList, updateHabitsList] = useState([]);
   const [selectedHabit, setSelectedHabit] = useState(undefined);
+  const [selectedHabitId, setSelectedHabitId] = useState(undefined);
   const [IsAddHabit, SetIsAddHabit] = useState(false);
   const [IsHabitUpdated, setIsHabitUpdated] = useState(false);
 
@@ -34,21 +35,21 @@ export default HabitsContextProvider = (props) => {
   useEffect(() => {
     const getHabitsData = async () => {
       try {
-        const thisHabitRef = doc(db, "habits", selectedHabit.id);
+        const thisHabitRef = doc(db, "habits", selectedHabitId);
         const docSnap = await getDoc(thisHabitRef);
         if (docSnap) {
           const thisUpdatedHabit = docSnap.data();
-          setSelectedHabit({ id: selectedHabit.id, ...thisUpdatedHabit });
+          setSelectedHabit({ id: selectedHabitId, ...thisUpdatedHabit });
           console.log(thisUpdatedHabit);
         }
       } catch (err) {
         console.log(err);
       }
     };
-    if (IsHabitUpdated && selectedHabit) {
+    if(selectedHabitId) {
       getHabitsData();
     }
-  }, [IsHabitUpdated]);
+  }, [selectedHabitId, IsHabitUpdated]);
 
   const getNewId = () => {
     if (habitsList.length === 0) return 1;
@@ -150,6 +151,7 @@ export default HabitsContextProvider = (props) => {
         setSelectedHabit,
         SetIsAddHabit,
         setIsHabitUpdated,
+        setSelectedHabitId,
         addNewHabit,
         calculateHabitsStreak,
         getHabitDataForDate

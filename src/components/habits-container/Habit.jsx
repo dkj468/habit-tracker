@@ -5,11 +5,11 @@ import { useHabitsContext } from "../../store/HabitsContext";
 
 const Habit = (props) => {
   const { habitName, id } = props.habit;
-  const { setSelectedHabit} = useHabitsContext();
+  const { setSelectedHabit, setSelectedHabitId} = useHabitsContext();
 
   const handleHabitSelect = (e) => {
     // console.log(props.habit);
-    setSelectedHabit(props.habit);    
+    setSelectedHabitId(props.habit.id);    
   };
 
   return (
