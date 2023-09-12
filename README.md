@@ -21,5 +21,5 @@ Habits Tracker helps in managing, tracking your habits.
 ### Building this application from scratch - not using npx create-react-app 🚀🚀🚀🚀
 
 ### Future roadmap
-- integrate React frontend with .NET CORE API
+- Integrate React frontend with .NET CORE API
 

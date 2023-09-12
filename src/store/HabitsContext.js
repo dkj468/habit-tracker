@@ -2,6 +2,7 @@ import { collection, getDoc, getDocs, doc } from "firebase/firestore";
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { db } from "../firebase-config/config";
+import { getFormattedDate } from "../Utils/Utils";
 
 export const HabitsContext = React.createContext();
 
@@ -44,7 +45,7 @@ export default HabitsContextProvider = (props) => {
         console.log(err);
       }
     };
-    if (IsHabitUpdated) {
+    if (IsHabitUpdated && selectedHabit) {
       getHabitsData();
     }
   }, [IsHabitUpdated]);
@@ -67,22 +68,30 @@ export default HabitsContextProvider = (props) => {
     updateHabitsList(tempHabits);
   };
 
+  const getFormattedStreakData = (thisHabit) => {
+    let streakData = undefined;
+    if(thisHabit){
+      streakData = thisHabit.data;  
+      streakData = streakData.map((data) => {
+        return {
+          status: data.status,
+          startDate: new Date(data.startDate.seconds * 1000),
+        };
+      });
+    }
+    return streakData;
+  }
+
   const calculateHabitsStreak = () => {
-    let streakData = selectedHabit.data;
-    streakData = streakData.map((data) => {
-      return {
-        status: data.status,
-        startDate: new Date(data.startDate.seconds * 1000),
-      };
-    });
+    let streakData = getFormattedStreakData(selectedHabit);
 
     streakData = streakData.sort((a, b) => b.startDate - a.startDate);
-    console.log("streakData = " + JSON.stringify(streakData));
+    // console.log("streakData = " + JSON.stringify(streakData));
 
     const indexOfFail = streakData.findIndex((data) => data.status === "fail");
     const indexOfSkip = streakData.findIndex((data) => data.status === "skip");
 
-    console.log("Fail Index : " + indexOfFail, "Skip Index : " + indexOfSkip);
+    // console.log("Fail Index : " + indexOfFail, "Skip Index : " + indexOfSkip);
     let streakCount = 0;
     let streakDate = undefined;
 
@@ -104,12 +113,30 @@ export default HabitsContextProvider = (props) => {
       streakCount = indexOfLastSuccess;
       streakDate = streakData[indexOfLastSuccess].startDate;
     }
-
     return {
       streakCount,
       streakDate,
     };
   };
+
+  const getHabitDataForDate = async (thishabit, thisDate) => {
+    let result = undefined;
+    // get the new habit data
+    try {
+      const thisHabitRef = doc(db, "habits", thishabit.id);
+      const docSnap = await getDoc(thisHabitRef);
+      if (docSnap) {
+        const thisUpdatedHabit = docSnap.data();
+        thishabit = { id: thishabit.id, ...thisUpdatedHabit }
+        // console.log(thisUpdatedHabit);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    const streakData = getFormattedStreakData(thishabit);
+    result = streakData?.find(el => getFormattedDate(el.startDate) === getFormattedDate(thisDate));
+    return result;
+  }
 
   return (
     <HabitsContext.Provider
@@ -123,6 +150,7 @@ export default HabitsContextProvider = (props) => {
         setIsHabitUpdated,
         addNewHabit,
         calculateHabitsStreak,
+        getHabitDataForDate
       }}
     >
       {props.children}
