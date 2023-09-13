@@ -16,7 +16,7 @@ const formDefaultValues = {
 
 const Home = () => {
   const [error, setError] = useState(undefined);
-  const { value, formErrors, IsFormValid, onChangeHandler, onBlurHandler } =
+  const { value, onChangeHandler } =
     useInput(formDefaultValues);
 
   const { user, signInWithGoogle, signInWithUserEmailAndPassword } =

@@ -6,14 +6,14 @@ import HabitDetail from "../components/habit-detail/HabitDetail";
 import SideNav from "../components/side-nav/SideNav";
 import HabitsContainer from "../components/habits-container/HabitsContainer";
 import NewHabit from "../components/habit/NewHabit";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const AppPage = () => {
   const { user } = useAuthContext();
   //console.log(user);
   const navigate = useNavigate();
   if (!user) {
-    navigate("/");
+    <Navigate to={"/"} />
   }
   const { IsAddHabit } = useHabitsContext();
 

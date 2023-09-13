@@ -14,25 +14,6 @@ export default HabitsContextProvider = (props) => {
   const [IsHabitUpdated, setIsHabitUpdated] = useState(false);
 
   useEffect(() => {
-    const fetchHabitsData = async () => {
-      try {
-        await getDocs(collection(db, "habits")).then((querySnapShot) => {
-          const newData = querySnapShot.docs.map((doc) => {
-            return {
-              ...doc.data(),
-              id: doc.id,
-            };
-          });
-          updateHabitsList(newData);
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchHabitsData();
-  }, []);
-
-  useEffect(() => {
     const getHabitsData = async () => {
       try {
         const thisHabitRef = doc(db, "habits", selectedHabitId);
@@ -51,15 +32,8 @@ export default HabitsContextProvider = (props) => {
     }
   }, [selectedHabitId, IsHabitUpdated]);
 
-  const getNewId = () => {
-    if (habitsList.length === 0) return 1;
-    return Math.max(...habitsList.map((x) => x.id)) + 1;
-  };
-
   const addNewHabit = (habit) => {
-    const id = getNewId();
     const thisNewHabit = {
-      id,
       isDeleted: false,
       isarchived: false,
       ...habit,
@@ -154,7 +128,8 @@ export default HabitsContextProvider = (props) => {
         setSelectedHabitId,
         addNewHabit,
         calculateHabitsStreak,
-        getHabitDataForDate
+        getHabitDataForDate,
+        updateHabitsList
       }}
     >
       {props.children}
