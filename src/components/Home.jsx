@@ -3,7 +3,7 @@ import google from "../../asset/img/google-xsm.png";
 import goal from "../../asset/img/Goal-1.png";
 
 import { auth, GoogleProider } from "../firebase-config/config";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useAuthContext } from "../store/AuthContext";
 import useInput from "../hooks/useInput";
 import { useState } from "react";
@@ -16,8 +16,7 @@ const formDefaultValues = {
 
 const Home = () => {
   const [error, setError] = useState(undefined);
-  const { value, onChangeHandler } =
-    useInput(formDefaultValues);
+  const { value, onChangeHandler } = useInput(formDefaultValues);
 
   const { user, signInWithGoogle, signInWithUserEmailAndPassword } =
     useAuthContext();

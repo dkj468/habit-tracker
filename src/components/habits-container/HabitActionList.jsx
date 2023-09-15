@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import { FaEllipsisH } from "react-icons/fa";
 import { BiCheck } from "react-icons/bi";
-import {CiUndo} from "react-icons/ci";
+import { CiUndo } from "react-icons/ci";
 
 import { useHabitsContext } from "../../store/HabitsContext";
 import classes from "./Habit.module.css";
@@ -16,9 +16,9 @@ import { db } from "../../firebase-config/config";
 import classes from "./HabitActionList.module.css";
 import { getFormattedDate } from "../../Utils/Utils";
 
-const HabitActionList = (props) => {  
+const HabitActionList = (props) => {
   const [IsShowActionList, setIsShowActionList] = useState(false);
-  const {setIsHabitUpdated } = useHabitsContext();
+  const { setIsHabitUpdated } = useHabitsContext();
   const [HabitStreak, setHabitStreak] = useState(undefined);
 
   useEffect(() => {
@@ -28,15 +28,17 @@ const HabitActionList = (props) => {
         startDate: new Date(data.startDate.seconds * 1000),
       };
     });
-    const thisStreak = streakData?.find(el => getFormattedDate(el.startDate) === getFormattedDate(new Date()));
+    const thisStreak = streakData?.find(
+      (el) => getFormattedDate(el.startDate) === getFormattedDate(new Date())
+    );
     console.log(thisStreak);
-    setHabitStreak(thisStreak);    
+    setHabitStreak(thisStreak);
   }, []);
 
   const handleActionClick = (e) => {
     console.log(e.target);
     e.preventDefault();
-    setIsShowActionList (prev => !prev);
+    setIsShowActionList((prev) => !prev);
   };
 
   const habitActionHandler = async (e, action) => {
@@ -55,7 +57,7 @@ const HabitActionList = (props) => {
       console.log(response);
       setIsHabitUpdated(true);
       setHabitStreak(streakDataForToday);
-      setIsShowActionList (false);
+      setIsShowActionList(false);
     } catch (err) {
       console.log(err);
     }
@@ -73,46 +75,59 @@ const HabitActionList = (props) => {
       console.log(response);
       setIsHabitUpdated(true);
       setHabitStreak(undefined);
-      setIsShowActionList (false);
+      setIsShowActionList(false);
     } catch (err) {
       console.log(err);
     }
   };
 
-  if(HabitStreak) {
+  if (HabitStreak) {
     return (
-    <div className={classes["habit-action"]}>      
-      <div
-        className={`${classes["habit-action-btn"]} ${classes["habit-action-undo"]}`}
-        onClick={(e) => habitActionUndo(e, 'done')}
-      >
-        <CiUndo />
-        <p>Undo {HabitStreak.status}</p>
-      </div> 
-  </div>)
+      <div className={classes["habit-action"]}>
+        <div
+          className={`${classes["habit-action-btn"]} ${classes["habit-action-undo"]}`}
+          onClick={(e) => habitActionUndo(e, "done")}
+        >
+          <CiUndo />
+          <p>Undo {HabitStreak.status}</p>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className={classes["habit-action"]}>
       <div
         className={`${classes["habit-action-btn"]} ${classes["habit-action-done"]}`}
-        onClick={(e) => habitActionHandler(e, 'done')}
+        onClick={(e) => habitActionHandler(e, "done")}
       >
         <BiCheck />
         <p>Done</p>
-      </div>       
+      </div>
       <div>
         <FaEllipsisH
-            className={classes["habit-action-more"]}
-            onClick={(e) => handleActionClick(e)}
-          />
-        { IsShowActionList && <div className={classes["habit-action-menu"]}>
-            <div onClick={(e) => habitActionHandler(e,'fail')} className={classes['menu-item']}>Fail</div>
-            <div onClick={(e) => habitActionHandler(e,'skip')} className={classes['menu-item']}>Skip</div>
-        </div> }
+          className={classes["habit-action-more"]}
+          onClick={(e) => handleActionClick(e)}
+        />
+        {IsShowActionList && (
+          <div className={classes["habit-action-menu"]}>
+            <div
+              onClick={(e) => habitActionHandler(e, "fail")}
+              className={classes["menu-item"]}
+            >
+              Fail
+            </div>
+            <div
+              onClick={(e) => habitActionHandler(e, "skip")}
+              className={classes["menu-item"]}
+            >
+              Skip
+            </div>
+          </div>
+        )}
       </div>
     </div>
-  )
+  );
 };
 
 export default HabitActionList;

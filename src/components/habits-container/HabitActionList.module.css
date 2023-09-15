@@ -1,54 +1,53 @@
 .habit-action {
-    width: 18%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .habit-action-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    background-color: #323232;
-    height: 25px;
-    margin: 2px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-  }
+  width: 18%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .habit-action-done {
-    width: 70%;
-  }
+.habit-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #323232;
+  height: 25px;
+  margin: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
 
-  .habit-action-undo {
-    width: 100%;
-  }
-  
-  
-  .habit-action-done > svg {
-    width: 1.5em;
-    height: 1.5em;
-  }
-  
-  .habit-action-more {
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
-  }
-  
-  .habit-action-menu {
-    background-color: rgb(33, 33, 33);
-    /* padding: 1rem; */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    z-index: 30;
-    width: 7%;
-    animation: slide-down 300ms ease-out forwards;
-    position: absolute;
-    padding-left: 0.5rem;
-  }
-  
-  .menu-item {
-    border-bottom: 1px solid gray;
-  }
+.habit-action-done {
+  width: 70%;
+}
+
+.habit-action-undo {
+  width: 100%;
+}
+
+.habit-action-done > svg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.habit-action-more {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.habit-action-menu {
+  background-color: rgb(33, 33, 33);
+  /* padding: 1rem; */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  width: 7%;
+  animation: slide-down 300ms ease-out forwards;
+  position: absolute;
+  padding-left: 0.5rem;
+}
+
+.menu-item {
+  border-bottom: 1px solid gray;
+}

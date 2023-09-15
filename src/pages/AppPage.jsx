@@ -13,7 +13,7 @@ const AppPage = () => {
   //console.log(user);
   const navigate = useNavigate();
   if (!user) {
-    <Navigate to={"/"} />
+    <Navigate to={"/"} />;
   }
   const { IsAddHabit } = useHabitsContext();
 

@@ -35,7 +35,7 @@ const NewHabit = () => {
     };
     const docRef = await addDoc(collection(db, "habits"), newHabit);
     console.log("Document written with ID: ", docRef.id);
-    addNewHabit(value);
+    addNewHabit({ ...newHabit, id: docRef.id });
     SetIsAddHabit((prevVal) => {
       return !prevVal;
     });

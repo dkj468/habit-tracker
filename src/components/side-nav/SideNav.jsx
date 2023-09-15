@@ -4,11 +4,9 @@ import classes from "./SideNav.module.css";
 import profile from "../../../asset/img/profile.png";
 import allHabits from "../../../asset/img/all-habits.png";
 import { useAuthContext } from "../../store/AuthContext";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const SideNav = () => {
   const { user, logout } = useAuthContext();
-  // console.log(user);
 
   const navigate = useNavigate();
 
