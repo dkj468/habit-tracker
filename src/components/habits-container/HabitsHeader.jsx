@@ -4,10 +4,12 @@ import classes from "./HabitsHeader.module.css";
 import { getCurrentTimeDescription, getFormattedDate } from "../../Utils/Utils";
 import { useState } from "react";
 import AddHabit from "../habit/AddHabit";
+import NewHabit from "../habit/NewHabit";
 
 const currentDate = getFormattedDate(new Date());
 const HabitsHeader = () => {
   const [selectedDate, setSelectedDate] = useState(currentDate);
+  const [IsAddHabit, setIsAddHabit] = useState(false);
 
   return (
     <div className={classes["habits-header"]}>
@@ -20,7 +22,8 @@ const HabitsHeader = () => {
             setSelectedDate(getFormattedDate(e.target.valueAsDate))
           }
         />
-        <AddHabit />
+        <AddHabit onAddHabit={setIsAddHabit} />
+        {IsAddHabit && <NewHabit onAddHabit={setIsAddHabit} />}
       </div>
     </div>
   );

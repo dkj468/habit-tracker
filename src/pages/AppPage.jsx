@@ -19,7 +19,7 @@ const AppPage = () => {
 
   return (
     <div className={classes.container}>
-      {IsAddHabit && <NewHabit />}
+      {/* {IsAddHabit && <NewHabit />} */}
       <SideNav />
       <HabitsContainer />
       <HabitDetail />

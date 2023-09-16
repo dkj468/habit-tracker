@@ -3,11 +3,11 @@ import classes from "./AddHabit.module.css";
 import { BsPlus } from "react-icons/bs";
 import { useHabitsContext } from "../../store/HabitsContext";
 
-const AddHabit = () => {
-  const { SetIsAddHabit } = useHabitsContext();
+const AddHabit = (props) => {
+  // const { SetIsAddHabit } = useHabitsContext();
 
   const addHabitHandler = () => {
-    SetIsAddHabit(true);
+    props.onAddHabit(true);
   };
   return (
     <div className={classes["habit-add"]} onClick={addHabitHandler}>

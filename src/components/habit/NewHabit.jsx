@@ -13,15 +13,15 @@ const formDefaultValues = {
   habitTime: 0,
 };
 
-const NewHabit = () => {
+const NewHabit = (props) => {
   const { user } = useAuthContext();
   console.log(user);
-  const { SetIsAddHabit, addNewHabit } = useHabitsContext();
+  const { addNewHabit } = useHabitsContext();
   const { value, formErrors, IsFormValid, onChangeHandler, onBlurHandler } =
     useInput(formDefaultValues);
 
   const onCloseHandler = () => {
-    SetIsAddHabit((prevVal) => {
+    props.onAddHabit((prevVal) => {
       return !prevVal;
     });
   };
@@ -36,7 +36,7 @@ const NewHabit = () => {
     const docRef = await addDoc(collection(db, "habits"), newHabit);
     console.log("Document written with ID: ", docRef.id);
     addNewHabit({ ...newHabit, id: docRef.id });
-    SetIsAddHabit((prevVal) => {
+    props.onAddHabit((prevVal) => {
       return !prevVal;
     });
     console.log(value);

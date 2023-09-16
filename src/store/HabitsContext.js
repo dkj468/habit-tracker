@@ -10,7 +10,6 @@ export default HabitsContextProvider = (props) => {
   const [habitsList, updateHabitsList] = useState([]);
   const [selectedHabit, setSelectedHabit] = useState(undefined);
   const [selectedHabitId, setSelectedHabitId] = useState(undefined);
-  const [IsAddHabit, SetIsAddHabit] = useState(false);
   const [IsHabitUpdated, setIsHabitUpdated] = useState(false);
 
   useEffect(() => {
@@ -125,10 +124,8 @@ export default HabitsContextProvider = (props) => {
       value={{
         habitsList,
         selectedHabit,
-        IsAddHabit,
         IsHabitUpdated,
         setSelectedHabit,
-        SetIsAddHabit,
         setIsHabitUpdated,
         setSelectedHabitId,
         addNewHabit,
