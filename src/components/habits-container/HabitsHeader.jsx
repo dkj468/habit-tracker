@@ -7,10 +7,17 @@ import AddHabit from "../habit/AddHabit";
 import NewHabit from "../habit/NewHabit";
 
 const currentDate = getFormattedDate(new Date());
-const HabitsHeader = () => {
+
+const HabitsHeader = (props) => {
   const [selectedDate, setSelectedDate] = useState(currentDate);
   const [IsAddHabit, setIsAddHabit] = useState(false);
+  const { onDateChange } = props;
 
+  const handleDateChange = (newValue) => {
+    setSelectedDate(newValue);
+    // pass the new date to parent to filter the data
+    onDateChange(newValue);
+  };
   return (
     <div className={classes["habits-header"]}>
       <span>{getCurrentTimeDescription()}</span>
@@ -19,7 +26,7 @@ const HabitsHeader = () => {
           type="date"
           value={selectedDate}
           onChange={(e) =>
-            setSelectedDate(getFormattedDate(e.target.valueAsDate))
+            handleDateChange(getFormattedDate(e.target.valueAsDate))
           }
         />
         <AddHabit onAddHabit={setIsAddHabit} />
