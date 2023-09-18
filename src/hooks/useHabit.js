@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase-config/config";
 import { useHabitsContext } from "../store/HabitsContext";
 import { useAuthContext } from "../store/AuthContext";
 
 const useHabit = () => {
-  const { user } = useAuthContext();
-  const { updateHabitsList } = useHabitsContext();
+    const [habits, setHabits] = useState(undefined);
+    const {user} = useAuthContext();
 
   useEffect(() => {
     const fetchHabitsData = async () => {
@@ -22,11 +22,12 @@ const useHabit = () => {
           const filteredData = newData.filter(
             (data) => data.userId === user.uid
           );
-          updateHabitsList(filteredData);
+          setHabits(filteredData);
         });
       } catch (err) {
         console.log(err);
       }
+      return habits;
     };
     if (user) {
       fetchHabitsData();
