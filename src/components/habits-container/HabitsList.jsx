@@ -3,10 +3,18 @@ import Habit from "./Habit";
 import { useHabitsContext } from "../../store/HabitsContext";
 import EmptyList from "./EmptyList";
 import useHabit from "../../hooks/useHabit";
+import { useEffect } from "react";
 
 const HabitsList = () => {
-  useHabit();
-  const { habitsList } = useHabitsContext();
+  const habits = useHabit();
+  const { habitsList, updateHabitsList } = useHabitsContext();
+
+  useEffect(() => {
+    if (habits) {
+      console.info("updating habits data into context");
+      updateHabitsList(habits);
+    }
+  }, [habits]);
 
   if (habitsList.length === 0) {
     return <EmptyList />;
