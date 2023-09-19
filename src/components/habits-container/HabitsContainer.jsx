@@ -24,7 +24,8 @@ const HabitsContainer = () => {
     const tempHabitsData = [...AllHabits];
     const filteredData = tempHabitsData.filter((habit) => {
       const createdDate = new Date(habit.createdAt.seconds * 1000);
-      return getFormattedDate(createdDate) >= getFormattedDate(newDate);
+      // getFormattedDate extracts date part in string format
+      return new Date(getFormattedDate(createdDate)) <= new Date (newDate);
     });
     updateHabitsList(filteredData);
   };
