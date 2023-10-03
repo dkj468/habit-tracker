@@ -3,7 +3,7 @@ import Habit from "./Habit";
 import EmptyList from "./EmptyList";
 
 const HabitsList = (props) => {
-  console.log("rendering habits list");
+  // console.log("rendering habits list");
   const { habits } = props;
   if (habits.length === 0) {
     return <EmptyList />;
@@ -11,7 +11,7 @@ const HabitsList = (props) => {
   return (
     <div className={classes["habit-list"]}>
       {habits.map((habit) => {
-        return <Habit habit={habit} key={habit.id} />;
+        return <Habit habit={habit} key={habit.id} OnHabitSelect= {props.OnHabitSelect}/>;
       })}
     </div>
   );

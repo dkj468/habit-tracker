@@ -21,21 +21,17 @@ const HabitActionList = (props) => {
   const [HabitStreak, setHabitStreak] = useState(undefined);
 
   useEffect(() => {
-    const streakData = props.habit.data?.map((data) => {
-      return {
-        status: data.status,
-        startDate: new Date(data.startDate.seconds * 1000),
-      };
+    const thisStreak = props.habit.data?.find((data) => {
+      const startDate = new Date(data.startDate.seconds * 1000);
+      return getFormattedDate(startDate) === getFormattedDate(new Date())
     });
-    const thisStreak = streakData?.find(
-      (el) => getFormattedDate(el.startDate) === getFormattedDate(new Date())
-    );
-    console.log(thisStreak);
+    
+    // console.log(thisStreak);
     setHabitStreak(thisStreak);
   }, []);
 
   const handleActionClick = (e) => {
-    console.log(e.target);
+    // console.log(e.target);
     e.preventDefault();
     setIsShowActionList((prev) => !prev);
   };
@@ -45,7 +41,7 @@ const HabitActionList = (props) => {
     try {
       setIsHabitUpdated(false);
       const thisHabitDoc = doc(db, "habits", props.habit.id);
-      console.log(thisHabitDoc);
+      // console.log(thisHabitDoc);
       const streakDataForToday = {
         startDate: Timestamp.fromDate(new Date()),
         status: action,
@@ -53,10 +49,11 @@ const HabitActionList = (props) => {
       const response = await updateDoc(thisHabitDoc, {
         data: arrayUnion(streakDataForToday),
       });
-      console.log(response);
-      setIsHabitUpdated(true);
+      // console.log(response);
+      
       setHabitStreak(streakDataForToday);
       setIsShowActionList(false);
+      setIsHabitUpdated(true);
     } catch (err) {
       console.log(err);
     }
@@ -67,14 +64,14 @@ const HabitActionList = (props) => {
     try {
       setIsHabitUpdated(false);
       const thisHabitDoc = doc(db, "habits", props.habit.id);
-      console.log(thisHabitDoc);
+      // console.log(thisHabitDoc);
       const response = await updateDoc(thisHabitDoc, {
         data: arrayRemove(HabitStreak),
       });
-      console.log(response);
-      setIsHabitUpdated(true);
+      // console.log(response);      
       setHabitStreak(undefined);
       setIsShowActionList(false);
+      setIsHabitUpdated(true);
     } catch (err) {
       console.log(err);
     }

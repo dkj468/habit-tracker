@@ -6,15 +6,15 @@ import { useHabitsContext } from "../../store/HabitsContext";
 import { getFormattedDate } from "../../Utils/Utils";
 import HabitsList from "./HabitsList";
 
-const HabitsContainer = () => {
+const HabitsContainer = (props) => {
   const [AllHabits, setAllHabits] = useState([]);
   const habits = useHabit();
   const { habitsList, updateHabitsList } = useHabitsContext();
 
   useEffect(() => {
-    console.log("rendering HabitsContainer");
+    // console.log("rendering HabitsContainer");
     if (habits) {
-      console.info("updating habits data into context");
+      // console.info("updating habits data into context");
       updateHabitsList(habits);
       setAllHabits(habits);
     }
@@ -33,7 +33,7 @@ const HabitsContainer = () => {
   return (
     <div className={classes["habits-container"]}>
       <HabitsHeader onDateChange={handleDateChange} />
-      <HabitsList habits={habitsList} />
+      <HabitsList habits={habitsList} OnHabitSelect={props.OnHabitSelect}/>
     </div>
   );
 };

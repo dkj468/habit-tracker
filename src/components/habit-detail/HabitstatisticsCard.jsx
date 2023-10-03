@@ -7,7 +7,7 @@ import { useHabitsContext } from "../../store/HabitsContext";
 
 const HabitstatisticsCard = (props) => {
   const cardType = props.cardType;
-  const { selectedHabit } = useHabitsContext();
+  const selectedHabit = props.selectedHabit;
 
   let cardHeader = undefined;
   let days = selectedHabit.data?.filter((x) => x.status === cardType).length;

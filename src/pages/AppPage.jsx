@@ -7,9 +7,15 @@ import SideNav from "../components/side-nav/SideNav";
 import HabitsContainer from "../components/habits-container/HabitsContainer";
 import NewHabit from "../components/habit/NewHabit";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const AppPage = () => {
   const { user } = useAuthContext();
+  const [selectedHabit, setSelectedHabit] = useState(undefined);
+
+  const onHabitSelect = (thisHabit) => {
+    setSelectedHabit (thisHabit);
+  }
   //console.log(user);
   const navigate = useNavigate();
   if (!user) {
@@ -21,8 +27,8 @@ const AppPage = () => {
     <div className={classes.container}>
       {/* {IsAddHabit && <NewHabit />} */}
       <SideNav />
-      <HabitsContainer />
-      <HabitDetail />
+      <HabitsContainer OnHabitSelect = {onHabitSelect}/>
+      <HabitDetail selectedHabit= {selectedHabit}/>
     </div>
   );
 };

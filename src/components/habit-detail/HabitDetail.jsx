@@ -6,8 +6,8 @@ import HabitDetailHeader from "./HabitDetailHeader";
 import HabitStreak from "./HabitStreak";
 import HabitstatisticsCardsContainer from "./HabitstatisticsCardsContainer";
 
-const HabitDetail = () => {
-  const { selectedHabit } = useHabitsContext();
+const HabitDetail = (props) => {
+  const selectedHabit = props.selectedHabit;
 
   const SelectHabitText = () => (
     <p className={classes["text-select-habit"]}>
@@ -28,7 +28,7 @@ const HabitDetail = () => {
     <div className={classes["habit-detail-container"]}>
       <HabitDetailHeader selectedHabit={selectedHabit} />
       <HabitStreak selectedHabit={selectedHabit} />
-      <HabitstatisticsCardsContainer />
+      <HabitstatisticsCardsContainer selectedHabit={selectedHabit}/>
     </div>
   );
 };

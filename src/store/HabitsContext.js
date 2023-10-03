@@ -26,7 +26,8 @@ export default HabitsContextProvider = (props) => {
         console.log(err);
       }
     };
-    if (selectedHabitId) {
+    if (selectedHabitId || IsHabitUpdated) {
+      console.log("running habit context");
       getHabitsData();
     }
   }, [selectedHabitId, IsHabitUpdated]);
