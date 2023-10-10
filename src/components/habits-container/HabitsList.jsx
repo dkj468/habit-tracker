@@ -9,11 +9,10 @@ const HabitsList = (props) => {
     return <EmptyList />;
   }
 
-
   return (
     <div className={classes["habit-list"]}>
       {habits.map((habit) => {
-        return <Habit habit={habit} key={habit.id} OnHabitSelect= {props.OnHabitSelect} OnHabitChange= {props.OnHabitChange}/>;
+        return <Habit IsSelected = {props.selectedHabit && props.selectedHabit.id === habit.id} habit={habit} key={habit.id} OnHabitSelect= {props.OnHabitSelect} OnHabitChange= {props.OnHabitChange}/>;
       })}
     </div>
   );

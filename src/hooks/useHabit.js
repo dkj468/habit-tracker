@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase-config/config";
-import { useHabitsContext } from "../store/HabitsContext";
 import { useAuthContext } from "../store/AuthContext";
 
 const useHabit = () => {

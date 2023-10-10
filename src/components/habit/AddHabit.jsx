@@ -1,7 +1,6 @@
 import classes from "./AddHabit.module.css";
 
 import { BsPlus } from "react-icons/bs";
-import { useHabitsContext } from "../../store/HabitsContext";
 
 const AddHabit = (props) => {
   // const { SetIsAddHabit } = useHabitsContext();

@@ -1,5 +1,4 @@
 import { getMMMDDFormattedDate } from "../../Utils/Utils";
-import { useHabitsContext } from "../../store/HabitsContext";
 import classes from "./HabitStreak.module.css";
 import { FaFire } from "react-icons/fa";
 

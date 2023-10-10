@@ -1,6 +1,5 @@
 import classes from "./HabitDetail.module.css";
 
-import { useHabitsContext } from "../../store/HabitsContext";
 import HabitQuote from "./HabitQuote";
 import HabitDetailHeader from "./HabitDetailHeader";
 import HabitStreak from "./HabitStreak";

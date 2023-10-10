@@ -11,7 +11,7 @@ const currentDate = getFormattedDate(new Date());
 const HabitsHeader = (props) => {
   const [selectedDate, setSelectedDate] = useState(currentDate);
   const [IsAddHabit, setIsAddHabit] = useState(false);
-  const { onDateChange } = props;
+  const { onDateChange, OnAddNewHabit } = props;
 
   const handleDateChange = (newValue) => {
     setSelectedDate(newValue);
@@ -30,7 +30,7 @@ const HabitsHeader = (props) => {
           }
         />
         <AddHabit onAddHabit={setIsAddHabit} />
-        {IsAddHabit && <NewHabit onAddHabit={setIsAddHabit} />}
+        {IsAddHabit && <NewHabit onAddHabit={setIsAddHabit} OnAddNewHabit= {OnAddNewHabit}/>}
       </div>
     </div>
   );

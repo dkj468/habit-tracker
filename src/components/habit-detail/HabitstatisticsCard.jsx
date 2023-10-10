@@ -3,7 +3,6 @@ import { RxCross2 } from "react-icons/rx";
 import { BsArrowRight } from "react-icons/bs";
 
 import classes from "./HabitstatisticsCard.module.css";
-import { useHabitsContext } from "../../store/HabitsContext";
 
 const HabitstatisticsCard = (props) => {
   const cardType = props.cardType;

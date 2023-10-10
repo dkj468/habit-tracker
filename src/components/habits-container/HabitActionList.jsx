@@ -10,7 +10,6 @@ import { FaEllipsisH } from "react-icons/fa";
 import { BiCheck } from "react-icons/bi";
 import { CiUndo } from "react-icons/ci";
 
-import { useHabitsContext } from "../../store/HabitsContext";
 import { db } from "../../firebase-config/config";
 import classes from "./HabitActionList.module.css";
 import { getFormattedDate } from "../../Utils/Utils";

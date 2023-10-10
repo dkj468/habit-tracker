@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import classes from "./HabitsContainer.module.css";
 import useHabit from "../../hooks/useHabit";
 import HabitsHeader from "./HabitsHeader";
-import { useHabitsContext } from "../../store/HabitsContext";
 import { getFormattedDate } from "../../Utils/Utils";
 import HabitsList from "./HabitsList";
 
@@ -45,10 +44,16 @@ const HabitsContainer = (props) => {
     }
   }
 
+  const onAddNewHabit = (thisHabit) => {
+    const tempHabits = [...habitsList];
+    tempHabits.push(thisHabit);
+    updateHabitsList(tempHabits);
+  }
+
   return (
     <div className={classes["habits-container"]}>
-      <HabitsHeader onDateChange={handleDateChange} />
-      <HabitsList habits={habitsList} OnHabitSelect={OnHabitSelect} OnHabitChange={onHabitChange}/>
+      <HabitsHeader onDateChange={handleDateChange} OnAddNewHabit={onAddNewHabit}/>
+      <HabitsList selectedHabit = {selectedHabit} habits={habitsList} OnHabitSelect={OnHabitSelect} OnHabitChange={onHabitChange}/>
     </div>
   );
 };
