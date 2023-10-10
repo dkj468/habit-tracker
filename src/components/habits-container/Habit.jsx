@@ -2,8 +2,9 @@ import classes from "./Habit.module.css";
 import HabitActionList from "./HabitActionList";
 
 const Habit = (props) => {
-  // console.log("Habit render start");
   const { habitName, id } = props.habit;
+
+  
 
   const handleHabitSelect = (e) => {
     props.OnHabitSelect(props.habit);

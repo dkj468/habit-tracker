@@ -4,6 +4,7 @@ import { FaFire } from "react-icons/fa";
 
 const HabitStreak = (props) => {
   const selectedHabit = props.selectedHabit;
+  
   const getFormattedStreakData = (thisHabit) => {
     let streakData = undefined;
     if (thisHabit) {
@@ -24,7 +25,6 @@ const HabitStreak = (props) => {
     let streakDate = undefined;
     if (streakData) {
       streakData = streakData.sort((a, b) => b.startDate - a.startDate);
-      // console.log("streakData = " + JSON.stringify(streakData));
 
       const indexOfFail = streakData.findIndex(
         (data) => data.status === "fail"
@@ -33,7 +33,6 @@ const HabitStreak = (props) => {
         (data) => data.status === "skip"
       );
 
-      // console.log("Fail Index : " + indexOfFail, "Skip Index : " + indexOfSkip);
 
       if (indexOfFail === -1 && indexOfSkip === -1) {
         streakCount = streakData.length;
@@ -52,6 +51,13 @@ const HabitStreak = (props) => {
         }
         streakCount = indexOfLastSuccess;
         streakDate = streakData[indexOfLastSuccess].startDate;
+      }
+      let yesterDay = new Date();
+      yesterDay.setDate(yesterDay.getDate() -  1);
+      
+      if(streakDate < yesterDay) {
+        streakCount = 0;
+        streakDate = undefined;
       }
     }
     return {
