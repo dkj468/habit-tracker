@@ -27,7 +27,7 @@ const AppPage = () => {
     <div className={classes.container}>
       {/* {IsAddHabit && <NewHabit />} */}
       <SideNav />
-      <HabitsContainer OnHabitSelect = {onHabitSelect}/>
+      <HabitsContainer OnHabitSelect = {onHabitSelect} selectedHabit= {selectedHabit}/>
       <HabitDetail selectedHabit= {selectedHabit}/>
     </div>
   );

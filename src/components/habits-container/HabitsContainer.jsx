@@ -9,10 +9,12 @@ import HabitsList from "./HabitsList";
 const HabitsContainer = (props) => {
   const [AllHabits, setAllHabits] = useState([]);
   const habits = useHabit();
-  const { habitsList, updateHabitsList } = useHabitsContext();
+  const [habitsList, updateHabitsList ] = useState(undefined);
+
+  const {selectedHabit, OnHabitSelect} = props;
 
   useEffect(() => {
-    // console.log("rendering HabitsContainer");
+    console.log("rendering HabitsContainer");
     if (habits) {
       // console.info("updating habits data into context");
       updateHabitsList(habits);
@@ -30,10 +32,23 @@ const HabitsContainer = (props) => {
     updateHabitsList(filteredData);
   };
 
+  
+  const onHabitChange = (thisHabit) => {
+    const tempHabits = [...habitsList];
+    const habitIndex = tempHabits.findIndex(el => el.id === thisHabit.id);
+    if(habitIndex >= 0){
+      tempHabits[habitIndex] = thisHabit;
+      updateHabitsList(tempHabits);
+      if(selectedHabit && (selectedHabit.id === thisHabit.id)) {
+        OnHabitSelect(thisHabit);
+      }
+    }
+  }
+
   return (
     <div className={classes["habits-container"]}>
       <HabitsHeader onDateChange={handleDateChange} />
-      <HabitsList habits={habitsList} OnHabitSelect={props.OnHabitSelect}/>
+      <HabitsList habits={habitsList} OnHabitSelect={OnHabitSelect} OnHabitChange={onHabitChange}/>
     </div>
   );
 };

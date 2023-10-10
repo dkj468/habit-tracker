@@ -30,6 +30,8 @@ const useHabit = () => {
     if (user) {
       console.info("fetching habits data -- hook");
       fetchHabitsData();
+    } else {
+      console.log("useHabit hook didnot run");
     }
   }, [user]);
 

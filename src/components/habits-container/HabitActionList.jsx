@@ -17,18 +17,15 @@ import { getFormattedDate } from "../../Utils/Utils";
 
 const HabitActionList = (props) => {
   const [IsShowActionList, setIsShowActionList] = useState(false);
-  const { setIsHabitUpdated } = useHabitsContext();
-  const [HabitStreak, setHabitStreak] = useState(undefined);
 
-  useEffect(() => {
-    const thisStreak = props.habit.data?.find((data) => {
+  const getHabitStreak = () => {
+    const result = props.habit.data?.find((data) => {
       const startDate = new Date(data.startDate.seconds * 1000);
       return getFormattedDate(startDate) === getFormattedDate(new Date())
     });
-    
-    // console.log(thisStreak);
-    setHabitStreak(thisStreak);
-  }, []);
+
+    return result;
+  }
 
   const handleActionClick = (e) => {
     // console.log(e.target);
@@ -39,7 +36,6 @@ const HabitActionList = (props) => {
   const habitActionHandler = async (e, action) => {
     e.preventDefault();
     try {
-      setIsHabitUpdated(false);
       const thisHabitDoc = doc(db, "habits", props.habit.id);
       // console.log(thisHabitDoc);
       const streakDataForToday = {
@@ -49,11 +45,16 @@ const HabitActionList = (props) => {
       const response = await updateDoc(thisHabitDoc, {
         data: arrayUnion(streakDataForToday),
       });
-      // console.log(response);
+      const thisHabit = props.habit;
+      if(thisHabit.data) {
+        thisHabit.data.push(streakDataForToday);
+      } else {
+        const data = [streakDataForToday];
+        thisHabit.data = data;
+      }
       
-      setHabitStreak(streakDataForToday);
+      props.OnHabitChange(thisHabit);      
       setIsShowActionList(false);
-      setIsHabitUpdated(true);
     } catch (err) {
       console.log(err);
     }
@@ -62,22 +63,27 @@ const HabitActionList = (props) => {
   const habitActionUndo = async (e, action) => {
     e.preventDefault();
     try {
-      setIsHabitUpdated(false);
       const thisHabitDoc = doc(db, "habits", props.habit.id);
-      // console.log(thisHabitDoc);
+      const habitStreak = getHabitStreak();
       const response = await updateDoc(thisHabitDoc, {
-        data: arrayRemove(HabitStreak),
+        data: arrayRemove(habitStreak),
       });
-      // console.log(response);      
-      setHabitStreak(undefined);
+
+      const thisHabit = props.habit;
+      // find index of this streak
+      const thisIndex = thisHabit.data.findIndex (el => el.startDate === habitStreak.startDate);
+      if(thisIndex >= 0) {
+        thisHabit.data.splice(thisIndex);
+        props.OnHabitChange(thisHabit);
+      }
       setIsShowActionList(false);
-      setIsHabitUpdated(true);
     } catch (err) {
       console.log(err);
     }
   };
 
-  if (HabitStreak) {
+  const habitStreak = getHabitStreak();
+  if (habitStreak) {
     return (
       <div className={classes["habit-action"]}>
         <div
@@ -85,7 +91,7 @@ const HabitActionList = (props) => {
           onClick={(e) => habitActionUndo(e, "done")}
         >
           <CiUndo />
-          <p>Undo {HabitStreak.status}</p>
+          <p>Undo {habitStreak.status}</p>
         </div>
       </div>
     );

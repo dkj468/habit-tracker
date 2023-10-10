@@ -6,9 +6,10 @@ import { useEffect } from "react";
 const Habit = (props) => {
   // console.log("Habit render start");
   const { habitName, id } = props.habit;
-  const { selectedHabit, setSelectedHabitId } = useHabitsContext();
+  const { selectedHabit } = useHabitsContext();
 
   const handleHabitSelect = (e) => {
+    console.log("Habit clicked - " + e.target);
     props.OnHabitSelect(props.habit);
   };
 
@@ -29,7 +30,7 @@ const Habit = (props) => {
       >
         <p>{habitName}</p>
       </div>
-      <HabitActionList habit={props.habit} />
+      <HabitActionList habit={props.habit} OnHabitChange= {props.OnHabitChange}/>
     </div>
   );
 };
