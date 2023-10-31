@@ -3,10 +3,10 @@ import Habit from "./Habit";
 import EmptyList from "./EmptyList";
 
 const HabitsList = (props) => {
-  // console.log("rendering habits list");
+  const { setIsAddHabit } = props;
   const { habits } = props;
   if (!habits || habits.length === 0) {
-    return <EmptyList />;
+    return <EmptyList setIsAddHabit={setIsAddHabit}/>;
   }
 
   return (

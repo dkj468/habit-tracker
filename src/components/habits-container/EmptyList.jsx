@@ -2,7 +2,8 @@ import AddHabit from "../habit/AddHabit";
 import classes from "./EmptyList.module.css";
 import habits from "../../../asset/img/habits.jpg";
 
-const EmptyList = () => {
+const EmptyList = (props) => {
+  const {setIsAddHabit } = props;
   return (
     <div className={classes["empty-list-container"]}>
       <div className={classes["habit-img"]}>
@@ -17,7 +18,7 @@ const EmptyList = () => {
         </span>
       </div>
       <div className={classes["add-habit-btn"]}>
-        <AddHabit />
+        <AddHabit onAddHabit={setIsAddHabit}/>
       </div>
     </div>
   );

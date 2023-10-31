@@ -9,9 +9,8 @@ import NewHabit from "../habit/NewHabit";
 const currentDate = getFormattedDate(new Date());
 
 const HabitsHeader = (props) => {
-  const [selectedDate, setSelectedDate] = useState(currentDate);
-  const [IsAddHabit, setIsAddHabit] = useState(false);
-  const { onDateChange, OnAddNewHabit } = props;
+  const [selectedDate, setSelectedDate] = useState(currentDate);  
+  const { onDateChange, OnAddNewHabit, IsAddHabit, setIsAddHabit } = props;
 
   const handleDateChange = (newValue) => {
     setSelectedDate(newValue);

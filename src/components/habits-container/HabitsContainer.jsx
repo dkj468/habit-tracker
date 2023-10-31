@@ -9,6 +9,7 @@ const HabitsContainer = (props) => {
   const [AllHabits, setAllHabits] = useState([]);
   const habits = useHabit();
   const [habitsList, updateHabitsList ] = useState(undefined);
+  const [IsAddHabit, setIsAddHabit] = useState(false);
 
   const {selectedHabit, OnHabitSelect} = props;
 
@@ -52,8 +53,8 @@ const HabitsContainer = (props) => {
 
   return (
     <div className={classes["habits-container"]}>
-      <HabitsHeader onDateChange={handleDateChange} OnAddNewHabit={onAddNewHabit}/>
-      <HabitsList selectedHabit = {selectedHabit} habits={habitsList} OnHabitSelect={OnHabitSelect} OnHabitChange={onHabitChange}/>
+      <HabitsHeader onDateChange={handleDateChange} OnAddNewHabit={onAddNewHabit} IsAddHabit={IsAddHabit} setIsAddHabit={setIsAddHabit}/>
+      <HabitsList selectedHabit = {selectedHabit} habits={habitsList} OnHabitSelect={OnHabitSelect} OnHabitChange={onHabitChange} setIsAddHabit={setIsAddHabit}/>
     </div>
   );
 };

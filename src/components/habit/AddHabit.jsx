@@ -3,8 +3,7 @@ import classes from "./AddHabit.module.css";
 import { BsPlus } from "react-icons/bs";
 
 const AddHabit = (props) => {
-  // const { SetIsAddHabit } = useHabitsContext();
-
+  
   const addHabitHandler = () => {
     props.onAddHabit(true);
   };

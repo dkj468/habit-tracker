@@ -16,14 +16,14 @@ const NewHabit = (props) => {
   const { user } = useAuthContext();
   const { value, formErrors, IsFormValid, onChangeHandler, onBlurHandler } =
     useInput(formDefaultValues);
-
+  const {onAddHabit, OnAddNewHabit} = props;
   const onCloseHandler = () => {
     props.onAddHabit((prevVal) => {
       return !prevVal;
     });
   };
 
-  const {onAddHabit, OnAddNewHabit} = props;
+ 
 
   const saveHabitHandler = async (e) => {
     e.preventDefault();
