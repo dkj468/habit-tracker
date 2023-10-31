@@ -15,13 +15,11 @@ const AppPage = () => {
     setSelectedHabit (thisHabit);
   }
   //console.log(user);
-  const navigate = useNavigate();
   if (!user) {
     <Navigate to={"/"} />;
   }
   return (
-    <div className={classes.container}>
-      {/* {IsAddHabit && <NewHabit />} */}
+    <div className={classes.container}>     
       <SideNav />
       <HabitsContainer OnHabitSelect = {onHabitSelect} selectedHabit= {selectedHabit}/>
       <HabitDetail selectedHabit= {selectedHabit}/>

@@ -44,7 +44,7 @@ const HabitActionList = (props) => {
       const response = await updateDoc(thisHabitDoc, {
         data: arrayUnion(streakDataForToday),
       });
-      const thisHabit = props.habit;
+      const thisHabit = {...props.habit};
       if(thisHabit.data) {
         thisHabit.data.push(streakDataForToday);
       } else {
@@ -68,7 +68,7 @@ const HabitActionList = (props) => {
         data: arrayRemove(habitStreak),
       });
 
-      const thisHabit = props.habit;
+      const thisHabit = {...props.habit};
       // find index of this streak
       const thisIndex = thisHabit.data.findIndex (el => el.startDate === habitStreak.startDate);
       if(thisIndex >= 0) {
