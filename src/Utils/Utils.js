@@ -28,3 +28,16 @@ export const getMMMDDFormattedDate = (thisDate) => {
     day: "numeric",
   });
 };
+
+export const GetCurrentMonthAndYear = () => {
+
+  const today = new Date();
+  const thisMonth = today.toLocaleString("default", { month: "short"});
+  const thisYear = today.toLocaleString("default", { year: "numeric"});
+
+  return {
+    month: thisMonth,
+    year: thisYear
+  }
+
+}
