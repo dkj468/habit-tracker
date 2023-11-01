@@ -23,6 +23,13 @@ const HabitStreak = (props) => {
     let streakData = getFormattedStreakData(selectedHabit);
     let streakCount = 0;
     let streakDate = undefined;
+    if(streakData.length === 0) {
+      return {
+        streakCount,
+        streakDate
+      }
+    }
+  
     if (streakData) {
       streakData = streakData.sort((a, b) => b.startDate - a.startDate);
 
@@ -35,29 +42,23 @@ const HabitStreak = (props) => {
 
 
       if (indexOfFail === -1 && indexOfSkip === -1) {
+        // no fail or skip
         streakCount = streakData.length;
         streakDate = streakData[streakData.length - 1].startDate;
       } else if (indexOfFail === 0 || indexOfSkip === 0) {
-        streakCount = 0;
-        streakDate = new Date();
-      } else {
-        let indexOfLastSuccess = -1;
-        if (indexOfFail === indexOfSkip) {
-          indexOfLastSuccess = indexOfFail;
-        } else if (indexOfFail > indexOfSkip) {
-          indexOfLastSuccess = indexOfSkip > 0 ? indexOfSkip : indexOfFail;
-        } else {
-          indexOfLastSuccess = indexOfFail > 0 ? indexOfFail : indexOfSkip;
-        }
-        streakCount = indexOfLastSuccess;
-        streakDate = streakData[indexOfLastSuccess].startDate;
-      }
-      let yesterDay = new Date();
-      yesterDay.setDate(yesterDay.getDate() -  1);
-      
-      if(streakDate < yesterDay) {
+        // fail or skip at first entry
         streakCount = 0;
         streakDate = undefined;
+      } else {
+        // check for last success entry after any fail or skip entry
+        let indexOfLastSuccess = -1;
+        if (indexOfFail > indexOfSkip) {
+          indexOfLastSuccess = streakData.findIndex((data,index) => (data.status === "done" && (indexOfSkip > 0 ? index < indexOfSkip : true)));
+        } else {
+          indexOfLastSuccess = streakData.findIndex((data,index) => (data.status === "done" && (indexOfFail > 0 ? index < indexOfFail : true)));
+        }
+        streakCount = indexOfLastSuccess + 1;
+        streakDate = streakData[indexOfLastSuccess].startDate;
       }
     }
     return {
